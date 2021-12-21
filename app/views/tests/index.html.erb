@@ -1,0 +1,13 @@
+<h1>Test</h1>
+<ul>
+  <% @test.questions.each do |question| %>
+    <li> <%= question.content %> </li>
+    <ul>
+      <% question.answers.each do |answer| %>
+        <li><%= answer.option %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>
+
+<%= console %>
