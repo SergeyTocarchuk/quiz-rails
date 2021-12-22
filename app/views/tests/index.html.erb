@@ -1,13 +1,27 @@
-<h1>Test</h1>
-<ul>
-  <% @test.questions.each do |question| %>
-    <li> <%= question.content %> </li>
-    <ul>
-      <% question.answers.each do |answer| %>
-        <li><%= answer.option %></li>
+<div class="container d-flex flex-column">
+  <div class="d-flex flex-row justify-content-center m-3">
+    <h1>Test</h1>
+  </div>
+  <div class="d-flex flex-column">
+    <div class="">
+    <%= form_with do |f| %>
+      <% @test.questions.each do |question| %>
+        <div class="m-2">
+          <p> <%= question.id %>. <%= question.content %></p>
+        </div>
+        <% question.answers.each do |answer| %>
+          <div class="m-1">
+            <%= f.check_box :age %>
+            <%= f.label :age_child, answer.option %><br>
+          </div>
+        <% end %>
       <% end %>
-    </ul>
-  <% end %>
-</ul>
+      <div class="d-flex flex-row justify-content-center">
+        <%= f.submit class: "btn btn-outline-success" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
 
 <%= console %>
