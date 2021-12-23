@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_21_184829) do
+ActiveRecord::Schema.define(version: 2021_12_23_133144) do
 
   create_table "answers", force: :cascade do |t|
     t.string "option"
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_correct"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.string "result"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -31,8 +40,19 @@ ActiveRecord::Schema.define(version: 2021_12_21_184829) do
   create_table "tests", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "attempt_id", null: false
+    t.index ["attempt_id"], name: "index_tests_on_attempt_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "attempts", "users"
   add_foreign_key "questions", "tests"
+  add_foreign_key "tests", "attempts"
 end
