@@ -6,6 +6,8 @@
   "2"=>"3"
 }
 
+  a. pass params to Show result method 
+
 2. Add column 'is_correct' to Answer
 
 3. Create Show result template
@@ -15,6 +17,8 @@ question_id:
 
   a. count: correct / total
 
-4. Create Attempt model
+4. Create Attempt and User model 
 
-5. Create User model
+5. Generate User controller and view
+
+6.

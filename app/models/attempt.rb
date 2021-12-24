@@ -1,4 +1,4 @@
 class Attempt < ApplicationRecord
-  has_many :tests
+  belongs_to :test
   belongs_to :user
 end
