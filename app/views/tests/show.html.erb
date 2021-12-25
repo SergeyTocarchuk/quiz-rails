@@ -3,16 +3,37 @@
     <h1>Results</h1>
   </div>
   <div>
-    <p><strong>Your result:</strong>1 / 2</p>
+    <p><strong>Your result:</strong><%= 1+1 %> / <%= Question.where('test_id = 1').count %> </p>
   </div>
   <div class="d-flex flex-column">
-    <h6> 1. Be or not to be? [@question]</h6>
-    <p>Your answer: Be [@answer = answer.find(id: params[:id])]</p>
-    <p>Correct answer: Be [ @answer = Answer.where("question_id = ?", params[:id])
-                            @answer = @answer.where("is_correct = ?", params[:id]) ]</p>
-    <h6> 2. Choose your language:</h6>
-    <p>Your answer: HTML</p>
-    <p>Correct answer: Ruby</p>
+    <h6> <%= Question.find(1).id %>. <%= Question.find(1).content %> </h6>
+    <ul>
+      <li>Your answer: 
+        <span style="<% if (Answer.where('question_id = ? AND is_correct = ?', 1, true).take.id == Answer.where('question_id = ? AND is_correct = ?', 1, true).take.id) %>
+                          color:green
+                      <% else %>
+                          color:red
+                      <% end %>;">
+          <%= Answer.find(2).option %>
+        </span>
+      </li>
+      <li>Correct answer: <%= Answer.where('question_id = ? AND is_correct = ?', 1, true).take.option %> </li>
+    </ul>
+
+    <h6> <%= Question.find(2).id %>. <%= Question.find(2).content %> </h6>
+    <ul>
+      <li>Your answer:
+        <span style="<% if (Answer.where('question_id = ? AND is_correct = ?', 2, false).take.id == Answer.where('question_id = ? AND is_correct = ?', 2, true).take.id) %>
+                          color:green
+                      <% else %>
+                          color:red
+                      <% end %>;">
+          <%= Answer.find(4).option %>
+        </span>
+      </li>
+      <li>Correct answer: <%= Answer.where('question_id = ? AND is_correct = ?', 2, true).take.option %> </li>
+    </ul>
+
     <div class="d-flex flex-row justify-content-center">
       <%= link_to 'Try Again', tests_path, class: "btn btn-outline-success" %>
     </div>

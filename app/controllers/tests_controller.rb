@@ -1,11 +1,10 @@
 class TestsController < ApplicationController
   def index
-    @test = Test.first
-    @answer = 
+    @data = params
   end
 
   def show
     @test = Test.first
-    @question = Question.find(id: params[:id])
+    @questions = Question.all
   end
 end

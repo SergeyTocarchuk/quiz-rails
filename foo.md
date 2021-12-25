@@ -8,17 +8,6 @@
 
   a. pass params to Show result method 
 
-2. Add column 'is_correct' to Answer
-
-3. Create Show result template
-question_id:
-  => user answer_id
-  => answer_id where is_correct == true
-
-  a. count: correct / total
-
-4. Create Attempt and User model 
-
-5. Generate User controller and view
-
-6.
+- how to add customize styles to app while setup bootstrap
+- how to use Ternary Operator (?:)
+(Answer.where('question_id = ? AND is_correct = ?', 2, true).take.id == Answer.where('question_id = ? AND is_correct = ?', 1, true).take.id) ? ('color:green;') : ('color:red;')
